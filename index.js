@@ -4,29 +4,30 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const cors = require("cors");
-
+// ✅ CORS Setup (Only declare once)
 app.use(cors({
-  origin: ["http://localhost:3000", "https://e-commerce-website-git-main-ash-d0707d97.vercel.app/"],
+  origin: [
+    "http://localhost:3000",
+    "https://e-commerce-website-git-main-ash-d0707d97.vercel.app/"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
+// ✅ Middleware to parse JSON
 app.use(express.json());
-app.use('/api/products', productRoutes); // ✅ now this is after CORS
 
-
-// Routes NEXT
-const productRoutes = require("./routes/Product");
-app.use('/api/products', productRoutes);
-
-// MongoDB connect
+// ✅ MongoDB connect
 const uri = "mongodb+srv://eishal:06GOlwR88yoOn6GP@cluster0.pldez3u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose.connect(uri)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Test Route
+// ✅ Routes
+const productRoutes = require("./routes/Product");
+app.use('/api/products', productRoutes);
+
+// ✅ Test Route to confirm MongoDB
 app.get('/api/test-db', async (req, res) => {
   try {
     const TestSchema = new mongoose.Schema({ name: String });
@@ -39,13 +40,13 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// Root route
+// ✅ Root route
 app.get('/', (req, res) => {
   res.send('🚀 Backend is running and ready!');
 });
 
-// Start Server
-const PORT = 5000;
+// ✅ Start the server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
