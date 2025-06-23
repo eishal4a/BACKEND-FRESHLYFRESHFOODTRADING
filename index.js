@@ -4,9 +4,17 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// Middleware FIRST
-app.use(cors({ origin: "http://localhost:3000" }));
+const cors = require("cors");
+
+app.use(cors({
+  origin: ["http://localhost:3000", "https://e-commerce-website-git-main-ash-d0707d97.vercel.app/"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
+app.use('/api/products', productRoutes); // ✅ now this is after CORS
+
 
 // Routes NEXT
 const productRoutes = require("./routes/Product");
