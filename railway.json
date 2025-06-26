@@ -1,4 +1,4 @@
 {
-  "root": "BACKEND",
+  "root": ".",
   "startCommand": "npm start"
 }
