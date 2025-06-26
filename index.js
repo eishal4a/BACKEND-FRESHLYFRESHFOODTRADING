@@ -40,10 +40,10 @@ console.log("✅ index.js started running");
 process.on('uncaughtException', (err) => {
   console.error("💥 Uncaught Exception:", err);
 });
-
 app.get('/', (req, res) => {
-  res.send('🚀 Backend is running and ready!');
+  res.status(200).send('✅ Backend is alive and running!');
 });
+
 const PORT = process.env.PORT || 5000;
 console.log("⚡ Trying to start server on port", PORT);
 
