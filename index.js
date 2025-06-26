@@ -35,6 +35,11 @@ app.get('/api/test-db', async (req, res) => {
     res.status(500).json({ error: 'MongoDB connection failed', details: err.message });
   }
 });
+console.log("✅ index.js started running");
+
+process.on('uncaughtException', (err) => {
+  console.error("💥 Uncaught Exception:", err);
+});
 
 app.get('/', (req, res) => {
   res.send('🚀 Backend is running and ready!');
