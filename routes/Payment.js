@@ -18,9 +18,10 @@ router.post("/orders", async (req, res) => {
 
   try {
     const order = await razorpay.orders.create(options);
-    res.json(order);
+    res.json(order); // ✅ valid JSON
   } catch (err) {
-    res.status(500).send("Error creating order");
+    console.error("Error creating order:", err); // helpful for debugging
+    res.status(500).json({ error: "Error creating order" }); // ✅ fixed
   }
 });
 
