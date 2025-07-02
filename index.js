@@ -20,7 +20,7 @@ mongoose.connect(uri)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-const paymentRoutes = require("./routes/payment");
+const paymentRoutes = require("./routes/Payment");
 app.use("/api/payment", paymentRoutes);
 
 const productRoutes = require("./routes/Product");
