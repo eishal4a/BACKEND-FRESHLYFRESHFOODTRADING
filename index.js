@@ -45,7 +45,8 @@ process.on('uncaughtException', (err) => {
 app.get('/', (req, res) => {
   res.status(200).send('✅ Backend is alive and running!');
 });
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
+
 
 console.log("⚡ Trying to start server on port", PORT);
 

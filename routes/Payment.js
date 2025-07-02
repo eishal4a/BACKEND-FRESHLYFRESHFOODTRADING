@@ -11,17 +11,17 @@ router.post("/orders", async (req, res) => {
   const { amount } = req.body;
 
   const options = {
-    amount: amount * 100, // in paisa
+    amount: amount * 100, 
     currency: "INR",
     receipt: "receipt_order_74394"
   };
 
   try {
     const order = await razorpay.orders.create(options);
-    res.json(order); // ✅ valid JSON
+    res.json(order); 
   } catch (err) {
-    console.error("Error creating order:", err); // helpful for debugging
-    res.status(500).json({ error: "Error creating order" }); // ✅ fixed
+    console.error("Error creating order:", err);
+    res.status(500).json({ error: "Error creating order" }); 
   }
 });
 
