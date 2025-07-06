@@ -5,7 +5,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-  "http://localhost:3000",
+  "*",
   "https://e-commerce-website-git-main-ash-d0707d97.vercel.app"
 ],
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -26,7 +26,7 @@ app.use("/api/payment", paymentRoutes);
 const productRoutes = require("./routes/Product");
 app.use('/api/products', productRoutes);
 
-app.get('/api/test-db', async (req, res) => {
+/*app.get('/api/test-db', async (req, res) => {
   try {
     const TestSchema = new mongoose.Schema({ name: String });
     const TestModel = mongoose.model('Test', TestSchema);
@@ -36,7 +36,7 @@ app.get('/api/test-db', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'MongoDB connection failed', details: err.message });
   }
-});
+});*/
 console.log("✅ index.js started running");
 
 process.on('uncaughtException', (err) => {
