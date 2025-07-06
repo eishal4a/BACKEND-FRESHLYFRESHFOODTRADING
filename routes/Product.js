@@ -12,7 +12,18 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    res.json(updatedProduct);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update product', details: err.message });
+  }
+});
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Product.findByIdAndDelete(req.params.id);
