@@ -13,6 +13,11 @@ router.post('/', async (req, res) => {
   }
 });
 
+const Product = require('../models/Product');
+router.get("/", async (req, res) => {
+  const products = await Product.find();
+  res.json(products);
+});
 
 router.get('/', async (req, res) => {
   try {
