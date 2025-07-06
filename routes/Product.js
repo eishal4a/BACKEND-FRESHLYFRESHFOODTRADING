@@ -35,6 +35,14 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete product", details: err.message });
   }
 });
+router.get('/', async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
