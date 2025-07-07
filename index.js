@@ -13,6 +13,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+const authRoutes = require('./routes/auth');
+app.use('/api', authRoutes);
 
 
 const uri = "mongodb+srv://eishal:06GOlwR88yoOn6GP@cluster0.pldez3u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -53,5 +55,3 @@ console.log("⚡ Trying to start server on port", PORT);
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
-const authRoutes = require('./routes/auth');
-app.use('/api', authRoutes);

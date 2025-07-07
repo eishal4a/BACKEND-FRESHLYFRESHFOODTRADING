@@ -1,26 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../models/User'); // your Mongoose User model
+const User = require('../models/User');
 
-// POST /api/signup
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Check if user already exists
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(400).json({ message: 'Username already exists' });
     }
 
-    // 🔐 Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10); // ← This is where it goes!
-
-    // Create new user
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
-      password: hashedPassword, // store hashed password
+      password: hashedPassword,
     });
 
     await newUser.save();
