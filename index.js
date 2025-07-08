@@ -3,21 +3,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
+const cors = require('cors');
+
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'https://e-commerce-website-git-main-ash-d0707d97.vercel.app'
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
 }));
+
 
 app.use(express.json());
 const authRoutes = require('./routes/auth');
