@@ -36,13 +36,17 @@ router.delete("/:id", async (req, res) => {
   }
 });
 router.get('/', async (req, res) => {
+  console.log("🔍 GET /api/products route called");
   try {
     const products = await Product.find();
+    console.log("✅ Products fetched:", products.length);
     res.json(products);
   } catch (err) {
+    console.error("❌ Error in GET /api/products:", err);
     res.status(500).json({ error: err.message });
   }
 });
+
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
